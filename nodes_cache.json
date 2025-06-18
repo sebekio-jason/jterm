@@ -1,0 +1,378 @@
+{
+    "10.16.24.2": [
+        {
+            "name": "FD-40D24L-TD",
+            "slot": "1",
+            "part_number": "1063804391-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Pre-Amp, 24dBm, Filter",
+            "ipv6": "fe80::280:eaff:fe0f:1c55"
+        },
+        {
+            "name": "AM-S23L-TD",
+            "slot": "5",
+            "part_number": "1063804311-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Booster, 23dBm, Filter",
+            "ipv6": "fe80::280:eaff:fe0f:49cf"
+        }
+    ],
+    "10.16.24.3": [
+        {
+            "name": "AM-2S20L",
+            "slot": "1",
+            "part_number": "1063804352-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Twin, 20dBm, Low Gain",
+            "ipv6": "fe80::2a9a:f7ff:fe30:2e18"
+        },
+        {
+            "name": "AM-2S23-M",
+            "slot": "2",
+            "part_number": "106380432-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Twin, Programmable Mode, 23dBm",
+            "ipv6": "fe80::2a9a:f7ff:fe01:ff92"
+        },
+        {
+            "name": "AM-S23H",
+            "slot": "4",
+            "part_number": "1063804101-02",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Booster, 23dBm, High Gain",
+            "ipv6": "fe80::280:eaff:fe0f:75cc"
+        },
+        {
+            "name": "AM-S20L",
+            "slot": "6",
+            "part_number": "1063804353-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Booster, 20dBm, Low Gain",
+            "ipv6": "fe80::2a9a:f7ff:fe30:2e07"
+        },
+        {
+            "name": "AM-2S20L",
+            "slot": "7",
+            "part_number": "--",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Twin, 20dBm, Low Gain",
+            "ipv6": "fe80::2a9a:f7ff:fe03:1f99"
+        }
+    ],
+    "10.16.24.4": [
+        {
+            "name": "AM-2S23-M",
+            "slot": "1",
+            "part_number": "--",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Twin, Programmable Mode, 23dBm",
+            "ipv6": "fe80::2a9a:f7ff:fe04:e40b",
+            "term_server": "10.16.24.104",
+            "term_port": "2008"
+        }
+    ],
+    "10.16.24.5": [
+        {
+            "name": "FD-40D24L-TD",
+            "slot": "1",
+            "part_number": "1063804391-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Pre-Amp, 24dBm, Filter",
+            "ipv6": "fe80::280:eaff:fe0f:4ffb"
+        },
+        {
+            "name": "AM-S23L-TD",
+            "slot": "5",
+            "part_number": "1063804311-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Booster, 23dBm, Filter",
+            "ipv6": "fe80::280:eaff:fea3:e83b"
+        }
+    ],
+    "10.16.24.7": [
+        {
+            "name": "AM-S22L-L",
+            "slot": "1",
+            "part_number": "1063804354-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, L-Band, Booster, 22dBm, Low Gain",
+            "ipv6": "fe80::2a9a:f7ff:fe30:4cbb"
+        },
+        {
+            "name": "AM-S22L-L",
+            "slot": "2",
+            "part_number": "1063804354-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, L-Band, Booster, 22dBm, Low Gain",
+            "ipv6": "fe80::2a9a:5ff:fe5d:128c",
+            "term_server": "10.16.24.104",
+            "term_port": "2002"
+        }
+    ],
+    "10.16.24.11": [
+        {
+            "name": "AM-S20L",
+            "slot": "1",
+            "part_number": "--",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Booster, 20dBm, Low Gain",
+            "ipv6": "fe80::280:eaff:fea3:e841"
+        },
+        {
+            "name": "AM-S20L",
+            "slot": "2",
+            "part_number": "1063804353-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Booster, 20dBm, Low Gain",
+            "ipv6": "fe80::2a9a:f7ff:fe30:398e"
+        }
+    ],
+    "10.16.24.13": [
+        {
+            "name": "OT-8ES18-MO",
+            "slot": "1",
+            "part_number": "1063804392-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amp, 23dBm",
+            "ipv6": "fe80::280:eaff:feaa:37dd",
+            "term_server": "10.16.24.104",
+            "term_port": "2007"
+        }
+    ],
+    "10.16.24.80": [
+        {
+            "name": "AM-S23LR15",
+            "slot": "1",
+            "part_number": "1063804351-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Raman Pre-Amp 15dBm, Booster 23dBm",
+            "ipv6": "fe80::280:eaff:fead:1101"
+        },
+        {
+            "name": "AM-S22L-L",
+            "slot": "3",
+            "part_number": "1063804354-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "L-Band Low Gain, 22dBm",
+            "ipv6": "fe80::2a9a:f7ff:fe30:4ccc"
+        }
+    ],
+    "10.16.24.81": [
+        {
+            "name": "AM-2S23-M",
+            "slot": "2",
+            "part_number": "1063804323-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Twin, Programmable Mode, 23dBm",
+            "ipv6": "fe80::2a9a:f7ff:fe30:1088"
+        }
+    ],
+    "10.16.24.82": [
+        {
+            "name": "AM-2S20L",
+            "slot": "4",
+            "part_number": "--",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Twin, 20dBm, Low Gain",
+            "ipv6": "fe80::2a9a:f7ff:fe03:1824"
+        },
+        {
+            "name": "OT-8ES18-MO",
+            "slot": "1",
+            "part-number": "1063804392-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Filter + Dual Amplifier, C-Band, 18dBm",
+            "ipv6": "fe80::2a9a:f7ff:fe30:51a6",
+            "term_server": "10.16.24.108",
+            "term_port": "2009"
+        }
+    ],
+    "10.16.24.84": [
+        {
+            "name": "AM-S20L",
+            "slot": "1",
+            "part_number": "1063804353-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Booster, 20dBm, Low Gain",
+            "ipv6": "fe80::2a9a:f7ff:fe30:3c92"
+        }
+    ],
+    "10.16.24.85": [],
+    "10.16.24.92": [
+        {
+            "name": "AM-S23LR15",
+            "slot": "1",
+            "part_number": "1063804351-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Raman Pre-Amp 15dBm, Booster 23dBm",
+            "ipv6": "fe80::280:eaff:fead:998"
+        },
+        {
+            "name": "AM-S20L",
+            "slot": "4",
+            "part_number": "1063804353-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Booster, 20dBm, Low Gain",
+            "ipv6": "fe80::2a9a:f7ff:fe30:398c"
+        }
+    ],
+    "10.16.24.93": [
+        {
+            "name": "AM-S22H-L",
+            "slot": "1",
+            "part_number": "1063804356-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, L-Band, Booster, 22dBm, High Gain",
+            "ipv6": "fe80::2a9a:f7ff:fe30:4cc9"
+        },
+        {
+            "name": "AM-S22H-L",
+            "slot": "2",
+            "part_number": "1063804356-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, L-Band, Booster, 22dBm, High Gain",
+            "ipv6": "fe80::2a9a:f7ff:fe30:4cae"
+        }
+    ],
+    "10.16.24.94": [
+        {
+            "name": "AM-S23LR15",
+            "slot": "1",
+            "part_number": "1063804351-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Raman Pre-Amp 15dBm, Booster 23dBm",
+            "ipv6": "fe80::280:eaff:fe0f:834e"
+        },
+        {
+            "name": "AM-2S20L",
+            "slot": "3",
+            "part_number": "1063804352-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Twin, 20dBm, Low Gain",
+            "ipv6": "fe80::2a9a:f7ff:fe30:3991"
+        }
+    ],
+    "10.16.24.95": [
+        {
+            "name": "AM-S23L",
+            "slot": "2",
+            "part_number": "1063804321-02",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Booster, 23dBm, Low Gain",
+            "ipv6":"fe80::280:eaff:fe0f:720a"
+        }
+    ],
+    "10.16.24.96": [
+        {
+            "name": "AM-S20L-2",
+            "slot": "1",
+            "part_number": "1063804355-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Pre-Amp, 20dBm, Low Gain",
+            "ipv6": "fe80::2a9a:f7ff:fe30:46f0"
+        },
+        {
+            "name": "AM-S20L-2",
+            "slot": "2",
+            "part_number": "1063804355-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Pre-Amp, 20dBm, Low Gain",
+            "ipv6": "fe80::2a9a:f7ff:fe30:45b6"
+        }
+    ],
+    "10.16.24.97": [],
+    "10.16.24.98": [
+        {
+            "name": "AM-S20H-2",
+            "slot": "1",
+            "part_number": "1063804122-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Pre-Amp, 20dBm, High Gain",
+            "ipv6": "fe80::280:eaff:fea3:e92e"
+        },
+        {
+            "name": "AM-S20H-2",
+            "slot": "2",
+            "part_number": "1063804122-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Pre-Amp, 20dBm, High Gain",
+            "ipv6": "fe80::280:eaff:fe0f:6140"
+        }
+    ],
+    "10.16.24.99": [
+        {
+            "name": "AM-S23H",
+            "slot": "1",
+            "part_number": "1063804101-03",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Booster, 23dBm, High Gain",
+            "ipv6": "fe80::2a9a:f7ff:fe30:3b04"
+        },
+        {
+            "name": "AM-S23L",
+            "slot": "2",
+            "part_number": "1063854321-03",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Booster, 23dBm, Low Gain",
+            "ipv6": "fe80::2a9a:f7ff:fe30:3b2c"
+        }
+    ],
+    "172.16.26.103": [
+        {
+            "name": "ocm-lpc",
+            "slot": "3",
+            "part_number": "1063854321-03",
+            "admin": "is",
+            "status": "ok",
+            "description": "ocm-lpc test amp",
+            "ipv6": "fe80::280:eaff:fe0d:de23",
+            "term_server": "172.16.26.180",
+            "term_port": "2014"
+        },
+        {
+            "name": "ocm-lpc",
+            "slot": "5",
+            "part_number": "1063854321-03",
+            "admin": "is",
+            "status": "ok",
+            "description": "ocm-lpc test amp",
+            "ipv6": "fe80::2a9a:f7ff:fe30:302b",
+            "term_server": "172.16.26.180",
+            "term_port": "2005"
+        }
+    ]
+}
