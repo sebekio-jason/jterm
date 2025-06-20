@@ -232,20 +232,22 @@ def serial(term_server: str, term_port: str, card_name: str, ecm_ip: str, slot: 
     except Exception as e:
         print(f"❌ Failed to launch CC3 CLI: {e}")
 
-def devploy(install_cc_cmd: str, ecm_ip: str, card_name: str, slot: str = ""):
-    # retrieve current card's inventory
-    # cc3 inventory: /opt/adva/aos/pkg/metadata/inventory-f8-cc3-65.25.1.json
-    # ams22ll inventory: /opt/adva/aos/pkg/metadata/inventory-f8-am-s22l-l-base-65.25.1.json
-
-    # parse json to lib-name:hash dictionary - with most recently used optimization.
-    # /mnt/workspace/build/arm7-32bit/Build/ams22ll/staging/base/opt/adva/aos/pkg/metadata/inventory-f8-am-s22l-l-base-65.25.1.json
-    # do same with cat inventory-f8-cc3-65.25.1.json
-
-    # for different hashes collect corresponding abspaths to the updated files
-    # card: /opt/adva/aos/lib/<driver>  my pc: /mnt/workspace/build/arm7-32bit/Build/ams22ll/staging/base/opt/adva/aos/lib/<driver>
-    # card: /opt/adva/aos/lib/plugin/hbmcard/libCc3HbmCard.so my pc: /mnt/workspace/build/arm7-32bit/Build/ams22ll/staging/base/opt/adva/aos/lib/plugin/libCc3HbmCard.so
-
-    return
+def deploy(deploy_cmd: str):
+    cmd = [
+        WT_PATH,
+        "new-tab",
+        "--title", "Deploying Packages",
+        "wsl",
+        "--",
+        "bash",
+        "-l",
+        "-c",
+        f"{deploy_cmd}"
+    ]
+    try:
+        subprocess.Popen(cmd)
+    except Exception as e:
+        print(f"❌ Failed to launch CC3 CLI: {e}")
 
 # replacing with devploy
 def install_cc(install_cc_cmd: str, ecm_ip: str, card_name: str, slot: str = ""):

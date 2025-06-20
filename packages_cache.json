@@ -1,0 +1,8 @@
+{
+    "packages":
+    [
+        {
+            "path": "opt/adva/aos/lib/libF8HbmDrvStressTestRunner.so"
+        }
+    ]
+}
