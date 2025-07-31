@@ -16,7 +16,9 @@
             "admin": "is",
             "status": "ok",
             "description": "Amplifier, C-Band, Booster, 23dBm, Filter",
-            "ipv6": "fe80::280:eaff:fe0f:49cf"
+            "ipv6": "fe80::280:eaff:fe0f:49cf",
+            "term_server": "10.16.24.101",
+            "term_port": "2013"
         }
     ],
     "10.16.24.3": [
