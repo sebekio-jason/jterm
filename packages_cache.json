@@ -2,8 +2,7 @@
     "packages":
     [
         {
-            "path": "opt/adva/aos/lib/libF8HbmDrvStressTestRunner.so",
-            "build_dir": ""
+            "path": "opt/adva/aos/lib/libF8HbmDrvStressTestRunner.so"
         },
         {
             "path": "opt/adva/aos/lib/libAmpStressTest.so"
