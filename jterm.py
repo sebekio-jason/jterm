@@ -70,6 +70,11 @@ with open(os.path.expanduser("~/jterm/packages_cache.json"), "r") as f:
 def split_package_names(packages: list[dict[str]]) -> list[tuple[str]]:
     return [(pkg['path'], pkg['path'].split('/')[-1].replace('.so', '')) for pkg in packages]
 
+def localPackagePath(package_path: str, card_build_name: str):
+    if not package_path.startswith("opt/"):
+        return f"/mnt/workspace/build/arm7-32bit/Build/{package_path}"
+    return f"/mnt/workspace/build/arm7-32bit/Build/{card_build_name}/staging/base/{package_path}"
+
 package_options = [Package(name=pkg_name, path=pkg_path) for (pkg_path, pkg_name) in split_package_names(package_cache.get("packages", []))]
 with col2:
     st.multiselect("Select local package under development", options=package_options, key='selected_packages')
@@ -116,15 +121,12 @@ for amp_type in AMPLIFIER_REGISTRY.keys():
                     if st.button(f"make {build_name}", key=f"make_{build_name}_{idx}"):
                         launch_and_make(amp_build_name=build_name)
                 with col7:
-                    LOCAL_CARD_LIB_BASE_PATH = lambda card_build_name: f"/mnt/workspace/build/arm7-32bit/Build/{card_build_name}/staging/base/"
                     REMOTE_CARD_LIB_BASE_PATH = "/"
-                    pkg_paths = [f"{LOCAL_CARD_LIB_BASE_PATH(build_name)}{pkg.path}" for pkg in st.session_state.get('selected_packages', [])]
-                    
+                    pkg_paths = [localPackagePath(pkg.path, build_name) for pkg in st.session_state.get('selected_packages', [])]
                     LOCAL_CARD_CONFIG_PATH = lambda card_build_name: f"/mnt/workspace/build/arm7-32bit/Build/{card_build_name}/HbmConfigAmp.json"
                     cfg_path = f"{LOCAL_CARD_CONFIG_PATH(build_name)}"
-                    
-                    for path in pkg_paths:
-                        deploy_cmd = f"cd /mnt/workspace && ./devploy -r {ecm_ip} {ipv6} {cfg_path} {path}"
+                    deploy_cmd = f"cd /mnt/workspace && ./devploy -r {ecm_ip} {ipv6} {cfg_path} {" ".join(pkg_paths)}"
+                    print(deploy_cmd)
                     pkg_names = [f"{pkg.name}" for pkg in st.session_state.get('selected_packages', [])]
                     if st.button(f"deploy {','.join(pkg_names)}", key=f"deploy_{build_name}_{idx}"):
                         deploy(deploy_cmd=deploy_cmd)
