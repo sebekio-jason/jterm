@@ -125,7 +125,9 @@ for amp_type in AMPLIFIER_REGISTRY.keys():
                     pkg_paths = [localPackagePath(pkg.path, build_name) for pkg in st.session_state.get('selected_packages', [])]
                     LOCAL_CARD_CONFIG_PATH = lambda card_build_name: f"/mnt/workspace/build/arm7-32bit/Build/{card_build_name}/HbmConfigAmp.json"
                     cfg_path = f"{LOCAL_CARD_CONFIG_PATH(build_name)}"
-                    deploy_cmd = f"cd /mnt/workspace && ./devploy -r {ecm_ip} {ipv6} {cfg_path} {" ".join(pkg_paths)}"
+                    LOCAL_CARD_OTN_CONFIG_PATH = lambda card_build_name: f"/mnt/workspace/build/arm7-32bit/Build/{card_build_name}/staging/base/opt/adva/aos/etc/domain-apps/otn/OtnConfig.json"
+                    otn_cfg_path = f"{LOCAL_CARD_OTN_CONFIG_PATH}"
+                    deploy_cmd = f"cd /mnt/workspace && ./devploy -r {ecm_ip} {ipv6} {cfg_path} {otn_cfg_path} {" ".join(pkg_paths)}"
                     print(deploy_cmd)
                     pkg_names = [f"{pkg.name}" for pkg in st.session_state.get('selected_packages', [])]
                     if st.button(f"deploy {','.join(pkg_names)}", key=f"deploy_{build_name}_{idx}"):

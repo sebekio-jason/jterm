@@ -9,6 +9,9 @@
         },
         {
             "path": "cc3/staging/base/opt/adva/aos/lib/libAosFwHbmDrvDevAdc.so"
+        },
+        {
+            "path": "opt/adva/aos/lib/libAmpDrv.so"
         }
     ]
 }
