@@ -14,7 +14,8 @@ AMPLIFIER_REGISTRY = {
     "AM-2S23-M":    ("am2s23m", "f8-am-2s23-m", "edfa-sm_dual"),
     "AM-2S20L":     ("am2s20l", "f8-am-2s20l", ""),
     "FD-40D24L-TD": ("fd40d24ltd", "f8-fd-40d24l-td", ""),
-    "OT-8ES18-MO":  ("ot8es18mo", "f8-ot-8es18-mo", "")
+    "OT-8ES18-MO":  ("ot8es18mo", "f8-ot-8es18-mo", ""),
+    "AM-R15-CL": ("amr15cl", "f8-am-r15-cl", "raman-lpc"),
 }
 
 
