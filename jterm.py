@@ -141,7 +141,7 @@ for amp_type in AMPLIFIER_REGISTRY.keys():
                 with col8:
                     if st.button(f"copy fwp", key=f"install_fwp_{build_name}_{idx}"):
                         fwp_path = f"/mnt/workspace/build/arm7-32bit/Build/{build_name}/{fwp_name}.fwp"
-                        cp_cmd = f"cd /mnt/workspace/repo && ./cp_fwp {ecm_ip} {ipv6} {fwp_path} /opt/adva/aos/lib/firmware"
+                        cp_cmd = f"cd /mnt/workspace && ./cp_fwp {ecm_ip} {ipv6} {fwp_path} /opt/adva/aos/lib/firmware"
                         cp_fwp(cp_cmd=cp_cmd, ecm_ip=ecm_ip, card_ip=ipv6, card_name=card_name, slot=slot)
                 with col9:
                     term_server = card.get("term_server")

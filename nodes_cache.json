@@ -151,7 +151,7 @@
             "admin": "is",
             "status": "ok",
             "description": "Amp, 23dBm",
-            "ipv6": "fe80::280:eaff:feaa:37dd",
+            "ipv6": "fe80::2a9a:f7ff:fe06:3842",
             "term_server": "10.16.24.104",
             "term_port": "2007"
         }
