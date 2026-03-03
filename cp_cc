@@ -1,0 +1,18 @@
+#!/bin/bash
+ 
+# Usage:
+#   cp_cc <ecm_ip> <cc_ip> <local_file_path> <remote_path>
+# Example:
+#   cp_cc 10.16.24.5 fe80::280:eaff:fe0f:1ce5 Install/lib/libAosFwHbmFramework.so /opt/adva/aos/lib/plugin/hbmapp/
+ 
+ecmip=${1}
+cardip=${2}
+src=${3}
+dest=${4}
+filename=$(basename "${3}")
+ 
+#ssh-keygen -R ${ecmip}
+#ssh-keygen -R [${ecmip}]:614
+ssh -p 614 root@${ecmip}  "ssh -o StrictHostKeyChecking=no root@${cardip}%mgmt mount -o remount,rw /opt/adva"
+scp -P 614 ${src} root@${ecmip}:/tmp/
+ssh -p 614 root@${ecmip} "scp /tmp/${filename} root@[${cardip}%mgmt]:${dest}"

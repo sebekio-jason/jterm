@@ -1,0 +1,52 @@
+#!/bin/bash
+ 
+# Usage:
+#   install_cc <ecm_ip> <cc_ip> <filepath0> [<filepath1> [<filepath2> ...]]
+# Example:
+#   install_cc 10.16.24.8 fe80::280:eaff:fea3:e848 /mnt/build/f8/master/arm7-32bit/Release/Build/cc3/staging/f8.cc3.base.1.0.0.arm7-32bit.tar.bz2 /mnt/build/f8/master/arm7-32bit/Release/Build/ams20h2/staging/f8.am-s20h-2.base.1.0.0.arm7-32bit.tar.bz2
+ 
+export SSH="ssh -o StrictHostKeyChecking=no"
+ 
+ecip=${1}
+shift
+ccip=${1}
+shift
+filepaths=${@}
+ 
+ssh-keygen -R [${ecip}]:614
+$SSH -p 614 root@${ecip} ssh-keygen -R ${ccip}%mgmt
+ 
+$SSH -p 614 root@${ecip} $SSH -T root@${ccip}%mgmt << EOA
+  #/opt/adva/aos/bin/aosStop.sh
+  pkill -9 'aos*|f8*|pppd*|pyth*|ntp*|tail*|ospf*|zebra*|screen*|dhclient*|snmpd*'
+ 
+  rm /tmp/* -rf
+EOA
+ 
+for filepath in ${filepaths[@]}; do
+  filename=$(basename "${filepath}")
+  #scp -P 614 ${filepath} root@${ecip}:/tmp/${filename}
+  #$SSH -p 614 root@${ecip} "scp /tmp/${filename} root@[${ccip}%mgmt]:/tmp/${filename}"
+  ./cp_cc ${ecip} ${ccip} ${filepath} /tmp/
+done
+ 
+$SSH -p 614 root@${ecip} $SSH -T root@${ccip}%mgmt << EOA
+  mount -o remount,rw /
+  mount -o remount,rw /boot
+  mount -o remount,rw /opt/adva
+  rm -rf /opt/adva/aos/bin
+  rm -rf /opt/adva/aos/etc
+  rm -rf /opt/adva/aos/lib
+  rm -rf /opt/adva/aos/pkg
+  rm -rf /opt/adva/aos/share
+ 
+  #rm -rf /opt/adva/aos/poms
+  sed -i -E 's/(package.BUILD_NUMBER>)[0-9]+(<\/package.BUILD_NUMBER)/\1DEBUG\2/g' /opt/adva/aos/poms/*.pom
+EOA
+ 
+for filepath in ${filepaths[@]}; do
+  filename=$(basename "${filepath}")
+  $SSH -p 614 root@${ecip} "$SSH root@${ccip}%mgmt tar jxf /tmp/${filename} -C / --warning=no-timestamp --overwrite"
+done
+
+​​

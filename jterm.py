@@ -14,8 +14,9 @@ ECM_IPS = [
     "10.16.24.92", "10.16.24.93", "10.16.24.94", "10.16.24.95",
     "10.16.24.96", "10.16.24.97", "10.16.24.98", "10.16.24.99"
 ]
+BUILD_ROOT="/home/jsebek/sandbox/adtran/dev/build"
 
-CACHE_FILE = os.path.expanduser("~/jterm/nodes_cache.json")
+CACHE_FILE = os.path.expanduser("~/archive/jterm/nodes_cache.json")
 
 def load_cache():
     if os.path.exists(CACHE_FILE):
@@ -28,7 +29,7 @@ def get_cached_nodes():
     return load_cache()
 
 # Streamlit App
-icon_path = os.path.expanduser("~/jterm/icon_one_removebg.png")
+icon_path = os.path.expanduser("~/archive/jterm/icon_one_removebg.png")
 st.set_page_config(page_title="SRay", layout="wide", page_icon=icon_path)
 col1, col2 = st.columns([0.25, 3])
 with col1:
@@ -64,16 +65,17 @@ class Package:
 if 'selected_packages' not in st.session_state:
     st.session_state['selected_packages'] = []
 package_options = []
-with open(os.path.expanduser("~/jterm/packages_cache.json"), "r") as f:
+with open(os.path.expanduser("~/archive/jterm/packages_cache.json"), "r") as f:
     package_cache = json.load(f)
 
 def split_package_names(packages: list[dict[str]]) -> list[tuple[str]]:
     return [(pkg['path'], pkg['path'].split('/')[-1].replace('.so', '')) for pkg in packages]
 
 def localPackagePath(package_path: str, card_build_name: str):
+    build_root="/home/jsebek/sandbox/adtran/dev/build"
     if not package_path.startswith("opt/"):
-        return f"/mnt/workspace/build/arm7-32bit/Build/{package_path}"
-    return f"/mnt/workspace/build/arm7-32bit/Build/{card_build_name}/staging/base/{package_path}"
+        return f"{build_root}/Build/{package_path}"
+    return f"{build_root}/Build/{card_build_name}/staging/base/{package_path}"
 
 package_options = [Package(name=pkg_name, path=pkg_path) for (pkg_path, pkg_name) in split_package_names(package_cache.get("packages", []))]
 with col2:
@@ -123,25 +125,25 @@ for amp_type in AMPLIFIER_REGISTRY.keys():
                 with col7:
                     REMOTE_CARD_LIB_BASE_PATH = "/"
                     pkg_paths = [localPackagePath(pkg.path, build_name) for pkg in st.session_state.get('selected_packages', [])]
-                    LOCAL_CARD_CONFIG_PATH = lambda card_build_name: f"/mnt/workspace/build/arm7-32bit/Build/{card_build_name}/HbmConfigAmp.json"
+                    LOCAL_CARD_CONFIG_PATH = lambda card_build_name: f"/home/jsebek/sandbox/adtran/dev/build/Build/{card_build_name}/HbmConfigAmp.json"
                     cfg_path = f"{LOCAL_CARD_CONFIG_PATH(build_name)}"
-                    LOCAL_CARD_OTN_CONFIG_PATH = lambda card_build_name: f"/mnt/workspace/build/arm7-32bit/Build/{card_build_name}/staging/base/opt/adva/aos/etc/domain-apps/otn/OtnConfig.json"
+                    LOCAL_CARD_OTN_CONFIG_PATH = lambda card_build_name: f"/home/jsebek/sandbox/adtran/dev/build/Build/{card_build_name}/staging/base/opt/adva/aos/etc/domain-apps/otn/OtnConfig.json"
                     otn_cfg_path = f"{LOCAL_CARD_OTN_CONFIG_PATH(build_name)}"
-                    deploy_cmd = f"cd /mnt/workspace && ./devploy -r {ecm_ip} {ipv6} {cfg_path} {otn_cfg_path} {" ".join(pkg_paths)}"
+                    deploy_cmd = f"cd {BUILD_ROOT} && ./devploy -r {ecm_ip} {ipv6} {cfg_path} {otn_cfg_path} {" ".join(pkg_paths)}"
                     print(deploy_cmd)
                     pkg_names = [f"{pkg.name}" for pkg in st.session_state.get('selected_packages', [])]
                     if st.button(f"deploy {','.join(pkg_names)}", key=f"deploy_{build_name}_{idx}"):
                         deploy(deploy_cmd=deploy_cmd)
                     # st.write(f"{pkg_paths}")
-                    # cc_path = "/mnt/workspace/build/arm7-32bit/Build/cc3/staging/f8-cc3-base-*.tar.bz2"
-                    # amp_path = f"/mnt/workspace/build/arm7-32bit/Build/{build_name}/staging/{tar_name}-base-*.tar.bz2"
-                    # install_cmd = f" cd /mnt/workspace && ./install_cc {ecm_ip} {ipv6} {cc_path} {amp_path}"
+                    # cc_path = f"{BUILD_ROOT}/arm7-32bit/Build/cc3/staging/f8-cc3-base-*.tar.bz2"
+                    # amp_path = f"{BUILD_ROOT}/arm7-32bit/Build/{build_name}/staging/{tar_name}-base-*.tar.bz2"
+                    # install_cmd = f" cd {BUILD_ROOT} && ./install_cc {ecm_ip} {ipv6} {cc_path} {amp_path}"
                     # if st.button(f"install_cc", key=f"install_cc_{build_name}_{idx}"):
                     #     install_cc(install_cc_cmd=install_cmd, ecm_ip=ecm_ip, card_name=card_name, slot=slot)
                 with col8:
                     if st.button(f"copy fwp", key=f"install_fwp_{build_name}_{idx}"):
-                        fwp_path = f"/mnt/workspace/build/arm7-32bit/Build/{build_name}/{fwp_name}.fwp"
-                        cp_cmd = f"cd /mnt/workspace && ./cp_fwp {ecm_ip} {ipv6} {fwp_path} /opt/adva/aos/lib/firmware"
+                        fwp_path = f"{BUILD_ROOT}/Build/{build_name}/{fwp_name}.fwp"
+                        cp_cmd = f"cd {BUILD_ROOT} && ./cp_fwp {ecm_ip} {ipv6} {fwp_path} /opt/adva/aos/lib/firmware"
                         cp_fwp(cp_cmd=cp_cmd, ecm_ip=ecm_ip, card_ip=ipv6, card_name=card_name, slot=slot)
                 with col9:
                     term_server = card.get("term_server")
@@ -158,7 +160,7 @@ for amp_type in AMPLIFIER_REGISTRY.keys():
 
 rows = []
 for ecm_ip, cards in nodes.items():
-    for card in cards:
+    for card in cards:  
         row = {
             "ecm_ip": ecm_ip,
             "type": card.get("name"),

@@ -32,13 +32,13 @@
             "ipv6": "fe80::2a9a:f7ff:fe30:2e18"
         },
         {
-            "name": "AM-2S23-M",
+            "name": "AM-R15-CL",
             "slot": "2",
-            "part_number": "106380432-01",
+            "part_number": "--",
             "admin": "is",
             "status": "ok",
             "description": "Amplifier, C-Band, Twin, Programmable Mode, 23dBm",
-            "ipv6": "fe80::2a9a:f7ff:fe01:ff92"
+            "ipv6": "fe80::2a9a:f7ff:fe04:e3ee"
         },
         {
             "name": "AM-S23H",
@@ -50,13 +50,13 @@
             "ipv6": "fe80::280:eaff:fe0f:75cc"
         },
         {
-            "name": "AM-S20L",
+            "name": "AM-S22L-L",
             "slot": "6",
-            "part_number": "1063804353-01",
+            "part_number": "1063804354-01",
             "admin": "is",
             "status": "ok",
-            "description": "Amplifier, C-Band, Booster, 20dBm, Low Gain",
-            "ipv6": "fe80::2a9a:f7ff:fe30:2e07"
+            "description": "Amplifier, L-Band, Booster, 22dBm, Low Gain",
+            "ipv6": "fe80::2a9a:f7ff:fe30:4ccf"
         },
         {
             "name": "AM-2S20L",
@@ -70,15 +70,31 @@
     ],
     "10.16.24.4": [
         {
-            "name": "AM-2S23-M",
+            "name": "AM-R15-CL",
             "slot": "1",
             "part_number": "--",
             "admin": "is",
             "status": "ok",
-            "description": "Amplifier, C-Band, Twin, Programmable Mode, 23dBm",
-            "ipv6": "fe80::2a9a:f7ff:fe04:e40b",
-            "term_server": "10.16.24.104",
-            "term_port": "2008"
+            "description": "Amplifier, C + L -Band, Raman Preamplifier",
+            "ipv6": "fe80::2a9a:f7ff:fe04:e5e0"
+        },
+        {
+            "name": "AM-S23L",
+            "slot": "6",
+            "part_number": "1063804101-02",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, C-Band, Booster, 23dBm, Low Gain",
+            "ipv6": "fe80::280:eaff:fe0f:6f98"
+        },
+        {
+            "name": "AM-S22L-L",
+            "slot": "7",
+            "part_number": "1063804354-01",
+            "admin": "is",
+            "status": "ok",
+            "description": "Amplifier, L-Band, Booster, 22dBm, Low Gain",
+            "ipv6": "fe80::2a9a:f7ff:fe30:4ccc"
         }
     ],
     "10.16.24.5": [

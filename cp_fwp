@@ -1,0 +1,19 @@
+#!/bin/bash
+#   cp_fwp 10.16.24.5 fe80::280:eaff:fe0f:1ce5 Build/ams22ll/edfa-lpc.fwp /opt/adva/aos/lib/firmware/
+
+export SSH="ssh -o StrictHostKeyChecking=no"
+ecmip=${1}
+cardip=${2}
+src=${3}
+dest=${4}
+filename=$(basename "${3}")
+
+ssh-keygen -R [${ecmip}]:614
+$SSH -p 614 root@${ecmip} ssh-keygen -R ${cardip}%mgmt
+
+ssh -p 614 root@${ecmip}  "$SSH root@${cardip}%mgmt mount -o remount,rw /opt/adva"
+scp -P 614 ${src} root@${ecmip}:/tmp
+echo "copied ${src} to tmp"
+ssh -p 614 root@${ecmip} "scp /tmp/${filename} root@[${cardip}%mgmt]:${dest}"
+
+echo "[✓] Install complete."

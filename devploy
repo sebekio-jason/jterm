@@ -1,0 +1,77 @@
+#!/bin/bash
+
+read -d '' USAGE << EOF
+Usage:
+  devploy [restart] <ecm_ip> <cc_ip> <config> [local_package_path]
+
+Examples:
+ devploy 10.16.24.5 fe80::280:eaff:fe0f:1ce5 /mnt/workspace/build/arm7-32bit/Build/ams22ll/HbmConfigAmp.json /mnt/workspace/build/arm7-32bit/Build/ams22ll/staging/base/opt/adva/aos/lib/libAmpDrv.so
+EOF
+
+if [ $# -lt 3 ]; then
+  echo "${USAGE}"
+  exit -1
+fi
+
+export SSH="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR"
+export SCP="scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR"
+
+restart_aos=false
+if [ $1 == "-r" ]; then
+  restart_aos=true
+  shift
+fi
+
+ecip=${1}
+ccip=${2}
+config=${3}
+config_dest="/opt/adva/aos/etc/framework/hal/HbmConfigAmp.json"
+shift 3
+USER=root
+
+if [ "$restart_aos" = true ] ; then
+  echo 'Killing AOS!'
+
+  $SSH -p 614 root@${ecip} $SSH -T root@${ccip}%mgmt << EOA
+    pkill -9 'aos*|f8*|pppd*|pyth*|ntp*|tail*|ospf*|zebra*|screen*|dhclient*|snmpd*'
+    rm /tmp/core* -rf
+    rm /var/opt/adva/aos/log/tracelog/aosFwHal.log* -f
+EOA
+fi
+
+# prevent man in the middle attack rejections
+ssh-keygen -R [${ecip}]:614
+$SSH -p 614 root@${ecip} ssh-keygen -R ${ccip}%mgmt
+$SSH -p 614 ${USER}@${ecip} "${SSH} root@${ccip}%mgmt mount -o remount,rw /opt/adva/"
+
+# Copy config file
+cfg_name=$(basename "${config}")
+$SCP -P 614 "${config}" ${USER}@${ecip}:/tmp/
+$SSH -p 614 ${USER}@${ecip} "${SCP} \"/tmp/${cfg_name}\" root@[${ccip}%mgmt]:${config_dest}"
+echo "Transferring /tmp/${cfg_name} to $ccip:$config_dest"
+
+packages=("$@")
+if [ ${#packages[@]} -eq 0 ]; then
+  echo "No packages to deploy!"
+  exit -1
+fi
+
+# Copy package files
+for pkg in "${packages[@]}"; do
+  if [[ "$pkg" =~ staging/base ]]; then
+    dest_path=$(echo "$pkg" | sed -n 's#.*staging/base##p' | sed 's#[^/]*$##')
+    filename=$(basename "$pkg")
+
+    echo "Transferring $filename to $ccip:$dest_path"
+    $SCP -P 614 "$pkg" ${USER}@${ecip}:/tmp/
+    $SSH -p 614 ${USER}@${ecip} "${SCP} \"/tmp/${filename}\" root@[${ccip}%mgmt]:${dest_path}"
+  else
+    echo "Skipping $pkg — does not contain 'staging/base'"
+  fi
+done
+
+
+if [ "$restart_aos" = true ]; then
+  echo 'Starting AOS!'
+  $SSH -p 614 root@${ecip} $SSH -T root@${ccip}%mgmt /opt/adva/aos/bin/aosStart.sh
+fi

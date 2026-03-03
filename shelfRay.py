@@ -163,6 +163,8 @@ def launch_ecm_terminal(ecm_ip: str, port: str = 22):
         "new-tab",
         "--title", title,
         "wsl",
+        "-d",
+        "Ubuntu",
         "--",
         "bash",
         "-l",
@@ -189,13 +191,15 @@ def launch_cc3_cli(ecm_ip: str, cc_ipv6: str, card_name: str, slot: str = ""):
 
 
     # SSH chain with forced TTY allocation on CC3 side only
-    ssh_chain = f"ssh -tt -o StrictHostKeyChecking=no -p 614 root@{ecm_ip} 'ssh -tt {cc_ipv6}%mgmt'"
+    ssh_chain = f"ssh -tt -o StrictHostKeyChecking=no -p 614 root@{ecm_ip} 'ssh {cc_ipv6}%mgmt'"
 
     cmd = [
         WT_PATH,
         "new-tab",
         "--title", title,
         "wsl",
+        "-d",
+        "Ubuntu",
         "--",
         "bash",
         "-l",
@@ -238,6 +242,8 @@ def deploy(deploy_cmd: str):
         "new-tab",
         "--title", "Deploying Packages",
         "wsl",
+        "-d",
+        "Ubuntu",
         "--",
         "bash",
         "-l",
@@ -320,6 +326,7 @@ def launch_cc3_dte(ecm_ip: str, cc_ipv6: str, card_name: str, slot: str = ""):
         "new-tab",
         "--title", title,
         "wsl",
+        "-d", "Ubuntu",
         "--",
         "expect",
         wsl_path
@@ -333,7 +340,7 @@ def launch_cc3_dte(ecm_ip: str, cc_ipv6: str, card_name: str, slot: str = ""):
 def launch_and_make(amp_build_name: str):
     title = f"Building {amp_build_name}"
     print(f"telling ede to make {amp_build_name}")
-    cmd = f"ede -C /mnt/workspace/build/arm7-32bit -b make {amp_build_name} && exec bash"
+    cmd = f"ede -b make {amp_build_name} && exec bash"
 
     full_cmd = [
         WT_PATH,
