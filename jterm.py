@@ -16,7 +16,7 @@ ECM_IPS = [
 ]
 BUILD_ROOT="/home/jsebek/sandbox/adtran/dev/build"
 
-CACHE_FILE = os.path.expanduser("~/archive/jterm/nodes_cache.json")
+CACHE_FILE = os.path.expanduser("~/sandbox/adtran/dev/jterm/nodes_cache.json")
 
 def load_cache():
     if os.path.exists(CACHE_FILE):
@@ -29,7 +29,7 @@ def get_cached_nodes():
     return load_cache()
 
 # Streamlit App
-icon_path = os.path.expanduser("~/archive/jterm/icon_one_removebg.png")
+icon_path = os.path.expanduser("~/sandbox/adtran/dev/jterm/icon_one_removebg.png")
 st.set_page_config(page_title="SRay", layout="wide", page_icon=icon_path)
 col1, col2 = st.columns([0.25, 3])
 with col1:
@@ -51,7 +51,7 @@ with col1:
     with st.expander(f"📋 Clipboard"):
         st.code("tail -f /var/opt/adva/aos/log/tracelog/aosFwHal.log")
         st.code("tail -n 2000 /var/opt/adva/aos/log/tracelog/aosFwHal.log")
-        st.code("tail -n 2000 /var/opt/adva/aos/log/tracelog/aosFwHal.log | awk 'match($0, /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:.]+Z\|core\.sirm\s+\|NOTICE\|THD:[0-9A-Fa-f]+\| =+ Starting AOS run [0-9]+ =+$/) {last=NR} {lines[NR]=$0} END {for (i=last; i<=NR; i++) print lines[i]}'")
+        st.code(r"tail -n 2000 /var/opt/adva/aos/log/tracelog/aosFwHal.log | awk 'match($0, /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:.]+Z\|core\.sirm\s+\|NOTICE\|THD:[0-9A-Fa-f]+\| =+ Starting AOS run [0-9]+ =+$/) {last=NR} {lines[NR]=$0} END {for (i=last; i<=NR; i++) print lines[i]}'")
         st.code("find / -type f -name '*Config.json' 2>/dev/null")
         st.code("go /debug/aosFwHal/trace-log && enable-in-memory-buffer off && clear")
 
@@ -65,7 +65,7 @@ class Package:
 if 'selected_packages' not in st.session_state:
     st.session_state['selected_packages'] = []
 package_options = []
-with open(os.path.expanduser("~/archive/jterm/packages_cache.json"), "r") as f:
+with open(os.path.expanduser("~/sandbox/adtran/dev/jterm/packages_cache.json"), "r") as f:
     package_cache = json.load(f)
 
 def split_package_names(packages: list[dict[str]]) -> list[tuple[str]]:
